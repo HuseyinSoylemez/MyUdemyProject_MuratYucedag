@@ -42,7 +42,7 @@ namespace HotelProject.WebApi
             }).AddEntityFrameworkStores<Context>();
             services.ConfigureApplicationCookie(opt =>
             {
-                opt.Cookie.Name = "RandevuCookie";
+                opt.Cookie.Name = "OtelApiCors";
                 opt.Cookie.HttpOnly = false;
                 opt.Cookie.SameSite = SameSiteMode.Lax;
                 opt.Cookie.SecurePolicy = CookieSecurePolicy.Always;
@@ -51,6 +51,17 @@ namespace HotelProject.WebApi
                 opt.ExpireTimeSpan = TimeSpan.FromMinutes(40);
             });
 
+            //Apilerimizi Baþka kaynaklarýn kullanabilmesi için izinler veriyoruz
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("OtelApiCors", opts =>
+                {
+                    opts.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); //Herhangi bir kaynaða, baþlýða, methota izin ver
+                });
+            });
+
+            //Automapper yapmak için
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -85,6 +96,7 @@ namespace HotelProject.WebApi
             }
 
             app.UseRouting();
+            app.UseCors("OtelApiCors");//Ben, kaynaklara izin vermede yazdýðýmý yazýyorum
 
             app.UseAuthorization();
 

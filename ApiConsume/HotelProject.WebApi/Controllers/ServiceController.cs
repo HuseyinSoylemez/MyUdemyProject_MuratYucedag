@@ -87,9 +87,10 @@ namespace HotelProject.WebApi.Controllers
             }
         }
 
-        [HttpPut("{id:int}")]
-        public IActionResult UpdateService([FromRoute(Name = "id")] int id, [FromBody] Service service)
-
+        //[HttpPut("{id:int}")]
+        //public IActionResult UpdateService([FromRoute(Name = "id")] int id, [FromBody] Service service)
+        [HttpPut]
+        public IActionResult UpdateService([FromBody] Service service)
         {
             try
             {
