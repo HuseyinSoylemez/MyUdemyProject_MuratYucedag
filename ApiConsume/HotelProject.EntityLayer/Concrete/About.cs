@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Core.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelProject.EntityLayer.Concrete
 {
-   public class About
+   public class About : IEntity
     {
         public int AboutID { get; set; }
         public string Title1 { get; set; }

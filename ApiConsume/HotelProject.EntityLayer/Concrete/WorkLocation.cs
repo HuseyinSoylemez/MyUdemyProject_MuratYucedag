@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HotelProject.EntityLayer.Concrete
 {
-    public class WorkLocation
+    public class WorkLocation : IEntity
     {
         public int WorkLocationID { get; set; }
         public string WorkLocationName { get; set; }
